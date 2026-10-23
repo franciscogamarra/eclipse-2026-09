@@ -1,0 +1,61 @@
+Signature-Version: 1.0
+Created-By: 11.0.31 (Eclipse Adoptium)
+SHA-256-Digest-Manifest: jdptAUe7bz/zXKiCrFpRanSAdzjCpk13QiW4+Y+DxHI=
+SHA-256-Digest-Manifest-Main-Attributes: fEqGm5WG9NXnePfVgX4P+xKsaKvEH8c
+ f+JJsXOVa6Jw=
+
+Name: about.properties
+SHA-256-Digest: 5r3cle02kkift8xt7AknF3aXkgcpD80iEbAGyTWRTZY=
+
+Name: plugin_customization.ini
+SHA-256-Digest: j33Ko6txTbFhSfqPOWlTtsRsiGIl90ElP8ppwdKAL5A=
+
+Name: about.html
+SHA-256-Digest: CLPBwuGGd87ncwFcy1yuXHxb4IoVLHBzrlP8ReflHc0=
+
+Name: plugin.xml
+SHA-256-Digest: rdJQbTCywjHRrkNYX3tOxXZESOmOvQmmUxtdjyWV2sk=
+
+Name: epp32.png
+SHA-256-Digest: yW7qWOPZTuLaAgqXcN7Al3MaGqhQQ0Gh1SChOnKMzcM=
+
+Name: javaee-ide_x48.png
+SHA-256-Digest: 1ONVV0OQXZKe6DTiHzqSSVuLfiJBLDKGrgiaSI0BSZY=
+
+Name: wtp_logo_2010.png
+SHA-256-Digest: DzJMSx1OPryVpyqj/LFwqswnSCJ7yN3W4YyZmB4CHnE=
+
+Name: helpData.xml
+SHA-256-Digest: vsSRfC9uclBm6jcvFfVEW4GDfC4tXatbTMirc9jGqGc=
+
+Name: META-INF/maven/org.eclipse.epp/org.eclipse.epp.package.jee/pom.xml
+SHA-256-Digest: cct5FkIQPATQVvPqgciZ4GPlkSeSF5S6nDOVNi/96uQ=
+
+Name: about.mappings
+SHA-256-Digest: ms60KDU1F/58q8Ezr31jIEm/qbFywU3XHmvVKson0uc=
+
+Name: javaee-ide_x16.png
+SHA-256-Digest: Yoe6W5NxbgPQ99FqTozzvK3FJVhexajufjEhhvgzvIg=
+
+Name: eclipse_lg.png
+SHA-256-Digest: qpD9AxiB7pQoc8h18Kcz51sn7AQBLil4DVCe0vmiC54=
+
+Name: eclipse_lg@2x.png
+SHA-256-Digest: WwPLBus7bHDDKC9e2ZGiMYKFc6JIeuDEMUQFRA/5t+M=
+
+Name: javaee-ide_x32.png
+SHA-256-Digest: +TNS2vz4WqQX7NRQO4mDE4a9xNYBFITGtjcwVhpR8BA=
+
+Name: about.ini
+SHA-256-Digest: xaF+85CnuIyXxOlXMkCGcEoomhVCkIggV/xrDO7AoIM=
+
+Name: plugin.properties
+SHA-256-Digest: Kvm6wb7cyJ/k9Gk3QDz6xUxLuD0G0/ggsockYg/uPpo=
+
+Name: META-INF/maven/org.eclipse.epp/org.eclipse.epp.package.jee/pom.pro
+ perties
+SHA-256-Digest: wpa/hfCPtKoBMKhUv8Castep2DWtMstQHeivxjFXW80=
+
+Name: wtp_logo_96.png
+SHA-256-Digest: 8CBYwQSQzEMHjdwF10FrnQN5CXyipqGB8kfYObLiObM=
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.wildwebdeveloper.feature"
+      label="%name"
+      version="1.4.1.202608181434"
+      provider-name="Eclipse Wild Web Developer">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <includes
+         id="org.eclipse.wildwebdeveloper.embedder.node.feature"
+         version="1.2.6.202608111102"
+         optional="true"/>
+
+   <requires>
+      <import feature="org.eclipse.wildwebdeveloper.xml.feature" version="1.0.1"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.wildwebdeveloper"
+         version="1.2.8.202608181434"/>
+
+</feature>
