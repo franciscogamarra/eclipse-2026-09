@@ -1,0 +1,12 @@
+package src.commom.utils.integer;
+
+import js.Js;
+import js.outros.JsMath;
+
+public class IntegerRandom {
+
+	public static int get(int max) {
+		return JsMath.floor(JsMath.random() * max);
+	}
+
+}

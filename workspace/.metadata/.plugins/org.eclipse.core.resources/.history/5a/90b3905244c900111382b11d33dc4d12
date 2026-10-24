@@ -1,0 +1,33 @@
+package br.wisevia.src.logado;
+
+import br.wisevia.WiseviaTranspilar;
+import br.wisevia.src.app.cruds.support.AuthController;
+import exec.ts.infra.FC;
+import gm.languages.ts.javaToTs.style.Sto;
+import gm.utils.anotacoes.IgnorarDaquiPraBaixo;
+import html.div;
+import html.span;
+import react.support.ReactNode;
+
+public class LogadoPage extends FC<LogadoPage> {
+	
+	@Override
+	protected ReactNode render() {
+		return (
+			div.r().ok(
+				span.r().ok(okString("sucesso")),
+				span.r().style(Sto.json().cursor$pointer()).onClick(() -> AuthController.clear()).ok(okString("logout"))
+			)
+		);
+	}
+	
+	@IgnorarDaquiPraBaixo
+	public static void main(String[] args) {
+		WiseviaTranspilar.exec(LogadoPage.class, false);
+	}
+	
+	public static LogadoPage r() {
+		return new LogadoPage();
+	}
+	
+}

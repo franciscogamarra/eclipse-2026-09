@@ -1,0 +1,177 @@
+package br.security;
+
+import java.security.SecureRandom;
+import java.util.Base64;
+
+import br.cruds.sistema.usuario.Usuario;
+import br.cruds.sistema.usuario.UsuarioAcaoResetarSenha;
+import br.support.SuperObject;
+import br.support.auto.Select;
+import br.support.comum.Lst;
+import br.support.framework.services.Persist;
+import br.support.specifics.CPFUtils;
+import br.support.strings.StringMantemSomenteNumeros;
+import br.support.strings.StringRemoveAcentos;
+import br.support.time.Momento;
+import io.quarkus.elytron.security.common.BcryptUtil;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import lombok.AllArgsConstructor;
+
+@Path("/unauthenticated/login")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+@AllArgsConstructor @Transactional
+public class LoginRest extends SuperObject {
+	
+	private static final Response UNAUTHORIZED = Response.status(Response.Status.UNAUTHORIZED).entity("Usuário ou senha incorreto ou inativo").build();
+	
+	private final Select select;
+	private final Persist persist;
+	private final UsuarioAcaoResetarSenha usuarioAcaoResetarSenha;
+	
+	public record Input(String cpf, String senha, String novaSenha, String email) {}
+	public record LoginOutput(String nome, String token, boolean solicitarTrocaDeSenha) {}
+	
+	@POST
+	public Response login(Input input) {
+		return exec(input.cpf, input.senha, null);
+	}
+
+	public record InputOut(String token) {}
+	@POST @Path("/out")
+	public Response out(InputOut input) {
+		Usuario o = select.usuario().findByToken(input.token);
+		if (o != null) {
+			o.setToken(null);
+			persist.save(o);
+		}
+		return Response.ok();
+	}
+	
+	private Usuario getUsuario(String cpf) {
+		
+		if (!CPFUtils.isValid(cpf)) {
+			return null;
+		}
+		
+		Usuario usuario = select.usuario().findByCpf(StringMantemSomenteNumeros.exec(cpf));
+		
+		if (usuario == null || !usuario.isAtivo()) {
+			return null;
+		}
+		
+		return usuario;
+		
+	}
+	
+	// http://localhost:8080/unauthenticated/login/84339136115/@Arramag2027
+	// http://localhost:8080/crud/session/permissoes-globais
+	private Response exec(String cpf, String senha, String novaSenha) {
+		
+		senha = trimPlusNull(senha);
+		
+		if (senha == null) {
+			return UNAUTHORIZED;
+		}
+		
+		Usuario usuario = getUsuario(cpf);
+		
+		if (usuario == null || !BcryptUtil.matches(senha, usuario.getSenha())) {
+			return UNAUTHORIZED;
+		}
+		
+		if (novaSenha != null) {
+			usuario.setSolicitarTrocaDeSenha(false);
+			usuario.setSenha(BcryptUtil.bcryptHash(novaSenha));
+		} else if (usuario.isSolicitarTrocaDeSenha()) {
+			return Response.ok(new LoginOutput(null, null, true)).build();
+		}
+		
+		usuario.setToken(gerarToken());
+		usuario.setUltimoRequest(Momento.now().toLocalDateTime());
+		
+		persist.save(usuario);
+		
+		return Response.ok(new LoginOutput(usuario.getNome(), usuario.getToken(), usuario.isSolicitarTrocaDeSenha())).build();
+		
+	}
+	
+	private static final SecureRandom SECURE_RANDOM = new SecureRandom();
+	
+	private static String gerarToken() {
+		byte[] bytes = new byte[32];
+		SECURE_RANDOM.nextBytes(bytes);
+		return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
+	}
+	
+	@POST @Path("/trocar-senha")
+	public Response trocarSenha(Input input) {
+		String erroSenha = erroSenha(input.novaSenha);
+		if (erroSenha != null) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(erroSenha).build();
+		}
+		if (input.novaSenha.equals(input.senha)) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("Nova senha não deve ser igual a atual").build();
+		}
+		return exec(input.cpf, input.senha, input.novaSenha);
+	}
+	
+	private static final Response DADOS_INCORRETOS = Response.status(Response.Status.BAD_REQUEST).entity("Dados incorretos ou usuário inativo").build();
+	
+	@POST @Path("/recuperar-senha")
+	public Response recuperarSenha(Input input) {
+		Usuario u = getUsuario(input.cpf);
+		if (u == null || u.getEmail() == null || !u.getEmail().equals(input.email)) {
+			return DADOS_INCORRETOS;
+		}
+		usuarioAcaoResetarSenha.exec(u);
+		return Response.ok().build();
+	}
+	
+	private String erroSenha(String senha) {
+		
+		if (senha == null) {
+			return "Senha deve ser preenchida";
+		}
+		
+		if (senha.contains(" ")) {
+			return "Senha não deve conter espaços";
+		}
+		
+		if (senha.contains("\t")) {
+			return "Senha não deve conter tabs";
+		}
+		
+		if (senha.length() < 8) {
+			return "Senha deve conter pelo menos 8 caracteres";
+		}
+		
+		Lst<String> itens = split(StringRemoveAcentos.exec(senha), "");
+		
+		if (itens.extract(s -> "0123456789".contains(s)).isEmpty()) {
+			return "Senha deve conter números";
+		}
+		
+		if (itens.extract(s -> "ABCDEFGHIJKLMNOPQRSTUVWXYZ".contains(s)).isEmpty()) {
+			return "Senha deve conter letras maiúsculas";
+		}
+		
+		if (itens.extract(s -> "abcdefghijklmnopqrstuvwxyz".contains(s)).isEmpty()) {
+			return "Senha deve conter letras minúsculas";
+		}
+		
+		if (itens.isEmpty()) {
+			return "Senha deve conter caractéres especiais";
+		}
+		
+		return null;
+		
+	}
+	
+}

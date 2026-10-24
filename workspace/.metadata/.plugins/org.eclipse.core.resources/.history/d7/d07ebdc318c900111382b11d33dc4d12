@@ -1,0 +1,56 @@
+package br.wisevia.src.app.cruds.support;
+
+import gm.languages.ts.javaToTs.GerarJson;
+import gm.utils.anotacoes.Ignorar;
+import gm.utils.anotacoes.IgnorarDaquiPraBaixo;
+import gm.utils.comum.JSon;
+import js.annotations.TypeJs;
+
+@TypeJs
+public class LoginObj {
+
+	public String cpf;
+	public String nome;
+	public String token;
+
+	@IgnorarDaquiPraBaixo
+	private LoginObj() {}
+
+	public static LoginObj json() {
+		return new LoginObj();
+	}
+
+	public LoginObj cpf(String cpf) {
+		this.cpf = cpf;
+		return this;
+	}
+
+	public LoginObj nome(String nome) {
+		this.nome = nome;
+		return this;
+	}
+
+	public LoginObj token(String token) {
+		this.token = token;
+		return this;
+	}
+
+	@Ignorar
+	private void buildExemplo() {
+		LoginObj.json()
+		.cpf("")
+		.nome("")
+		.token("")
+		;
+	}
+
+	public static void main(String... args) {
+		br.Transpilar.exec();
+		GerarJson.exec();
+	}
+
+	@Override
+	public String toString() {
+		return JSon.toJson(this);
+	}
+}

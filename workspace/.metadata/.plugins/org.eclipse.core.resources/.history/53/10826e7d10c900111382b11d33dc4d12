@@ -1,0 +1,31 @@
+package br.wisevia.src.app.cruds.support;
+
+import br.wisevia.WiseviaTranspilar;
+import gm.utils.anotacoes.GravarComExtensaoTs;
+import gm.utils.anotacoes.IgnorarDaquiPraBaixo;
+import gm.utils.lambda.F0;
+import js.Js;
+import js.support.JSON;
+
+@GravarComExtensaoTs
+public class AuthController extends Js {
+	
+	public static F0<String> getUserId = () -> {
+		ShowMessage.error("AuthController.getUserId não implementado!");
+		return "";
+	};
+	
+	public static void set(LoginObj o) {
+		Js.window.localStorage.setItem("login", JSON.stringify(o));
+	}
+	
+	public static boolean isLogado() {
+		return getUserId.call() != "";
+	}
+
+	@IgnorarDaquiPraBaixo
+	public static void main(String[] args) {
+		WiseviaTranspilar.exec(AuthController.class, true);
+	}
+	
+}

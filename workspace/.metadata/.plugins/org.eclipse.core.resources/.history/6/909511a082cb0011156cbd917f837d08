@@ -1,0 +1,16 @@
+package br.wisevia.src.components.carousel;
+
+import br.wisevia.src.components.AlertComponent;
+import exec.ts.infra.FC;
+import js.annotations.NaoConverter;
+import react.support.ReactNode;
+
+@NaoConverter
+public class Carousel extends FC<Carousel> {
+
+	@Override
+	protected ReactNode render() {
+		return null;
+	}
+
+}

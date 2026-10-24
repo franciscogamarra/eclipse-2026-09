@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1791891039991_0" label="Java Main Sources" name="Java Main Sources"/>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1791891040006_1" label="Java Test Sources" name="Java Test Sources"/>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1791891168675_3" label="all" name="all">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/all" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/gerador527" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/gm-support" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/gm-utils" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/react-main" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/react-web-materialUi" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/react-web" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/react" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/wisevia-jreact" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/mustang" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/estudo-biblico" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1791891867866_4" label="src" name="src">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/gerador527/src" type="2"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/gm-support/gm-support-j09/src" type="2"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/gm-support/gm-support-j21/src" type="2"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/gm-support/src" type="2"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/gm-utils/src" type="2"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/mustang/src/main/java" type="2"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/react/src" type="2"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/react-web/src" type="2"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/react-web-materialUi/src" type="2"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/wisevia-jreact/src" type="2"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1791891041197_2" label="Window Working Set" name="Aggregate for window 1791891041196"/>
+<mruList name="src"/>
+</workingSetManager>

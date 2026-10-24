@@ -1,0 +1,56 @@
+package br.cruds.support;
+
+import js.Js;
+
+public class Objects extends Js {
+	
+	public static boolean isEmpty(Object o) {
+		
+		if (not(o)) {
+			
+			if (o == true) {
+				
+			}
+			
+//			return o != false && o != 0;
+		}
+		
+		if (o == true) {
+//			return false;
+		}
+		
+		return false;
+		
+//		if (typeof(o) == "string") {
+//			return StringUtils.trim(o) == "";
+//		}
+//		
+//		if (Array.isArray(o)) {
+//			return o.length == 0;
+//		}
+//		
+//		if (o == IdTextUtils.VAZIO) {
+//			return true;
+//		}
+//		
+//		if (o == SelectOption.NULL) {
+//			return true;
+//		}
+//		
+//		if (o instanceof SelectOptions) {
+//			return o.isEmpty();
+//		}
+//		
+//		if (o instanceof SelectOption && !o.id) {
+//			return true;
+//		}
+//		
+//		if (o instanceof FiltroItens && !o.ids.length) {
+//			return true;
+//		}
+//		
+//		return Object.keys(o).length == 0;		
+		
+	}
+
+}

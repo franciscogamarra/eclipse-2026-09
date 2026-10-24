@@ -1,0 +1,92 @@
+package br.wisevia.src.components.icons;
+
+import br.wisevia.WiseviaTranspilar;
+import br.wisevia.srcx.components.icons.IconeX;
+import br.wisevia.srcx.components.icons.IconeX.X_name;
+import exec.srcx.CriarSrcx;
+import exec.ts.infra.FC;
+import exec.ts.infra.PropBoolean;
+import exec.ts.infra.Req;
+import gm.utils.anotacoes.IgnorarDaquiPraBaixo;
+import libs.materialUi.icons.ArrowForwardOutlinedIcon;
+import libs.materialUi.icons.CloseIcon;
+import libs.materialUi.icons.EmailOutlinedIcon;
+import libs.materialUi.icons.HelpOutlineOutlinedIcon;
+import libs.materialUi.icons.LockOutlinedIcon;
+import libs.materialUi.icons.PersonOutlinedIcon;
+import libs.materialUi.icons.VerifiedUserOutlinedIcon;
+import libs.materialUi.icons.VisibilityOffOutlinedIcon;
+import libs.materialUi.icons.VisibilityOutlinedIcon;
+import react.support.ReactNode;
+import src.cruds.support.Equals;
+
+public class Icone extends FC<Icone> {
+	
+	private Req<String> name = req();
+	private PropBoolean small = propBoolean(false);
+	private PropBoolean large = propBoolean(false);
+	
+	@Override
+	protected ReactNode render() {
+		
+		Object fontSize;
+		
+		if (small.get()) {
+			fontSize = "small";
+		} else if (large.get()) {
+			fontSize = "large";
+		} else {
+			fontSize = "medium";
+		}
+		
+		if (Equals.is(name.get(), "avancar")) {
+			return ArrowForwardOutlinedIcon.r().fontSize(fontSize).ok();
+		}
+		
+		if (Equals.is(name.get(), "shield-check")) {
+			return VerifiedUserOutlinedIcon.r().fontSize(fontSize).ok();
+		}
+		
+		if (Equals.is(name.get(), "help-circle")) {
+			return HelpOutlineOutlinedIcon.r().fontSize(fontSize).ok();
+		}
+		
+		if (Equals.is(name.get(), "email")) {
+			return EmailOutlinedIcon.r().fontSize(fontSize).ok();
+		}
+		
+		if (Equals.is(name.get(), "cadeado-trancado")) {
+			return LockOutlinedIcon.r().fontSize(fontSize).ok();
+		}
+		
+		if (Equals.is(name.get(), "olho-aberto")) {
+			return VisibilityOutlinedIcon.r().fontSize(fontSize).ok();
+		}
+		
+		if (Equals.is(name.get(), "olho-fechado")) {
+			return VisibilityOffOutlinedIcon.r().fontSize(fontSize).ok();
+		}
+		
+		if (Equals.is(name.get(), "user")) {
+			return PersonOutlinedIcon.r().fontSize(fontSize).ok();
+		}
+		
+		if (Equals.is(name.get(), "mail")) {
+			return EmailOutlinedIcon.r().fontSize(fontSize).ok();
+		}
+		
+		return CloseIcon.r().fontSize(fontSize).ok();
+		
+	}
+	
+	@IgnorarDaquiPraBaixo
+	public static void main(String[] args) {
+		WiseviaTranspilar.exec(Icone.class, false);
+		CriarSrcx.exec(Icone.class);
+	}
+	
+	public static X_name r() {
+		return IconeX.rs();
+	}
+	
+}

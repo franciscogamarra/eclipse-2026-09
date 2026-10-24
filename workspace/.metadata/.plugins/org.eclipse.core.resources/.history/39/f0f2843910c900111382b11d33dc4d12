@@ -1,0 +1,20 @@
+package br.wisevia.src.app.cruds.support;
+
+import br.wisevia.WiseviaTranspilar;
+import gm.utils.anotacoes.IgnorarDaquiPraBaixo;
+import js.annotations.TypeJs;
+
+@TypeJs
+public class LoginObj {
+	
+	public String nome;
+	public String token;
+	public boolean solicitarTrocaDeSenha;
+	
+	@IgnorarDaquiPraBaixo
+	public static void main(String[] args) {
+		WiseviaTranspilar.exec(LoginObj.class, false);
+		//		export type { LoginOutput as default };
+	}
+	
+}

@@ -1,0 +1,8 @@
+package br.wisevia.src.components;
+
+import js.annotations.NaoConverter;
+
+@NaoConverter
+public class Carousel {
+
+}

@@ -1,0 +1,678 @@
+package gm.languages.ts.javaToTs.style;
+
+import gm.languages.ts.javaToTs.annotacoes.FromMethod;
+import gm.utils.javaCreate.JcClasse;
+import gm.utils.javaCreate.JcMetodo;
+import gm.utils.reflection.ListMetodos;
+import gm.utils.reflection.Metodos;
+import js.annotations.Support;
+import js.annotations.TypeJs;
+
+@TypeJs
+public class Css implements FromMethod {
+	
+	public String backgroundColor;
+	public String fontWeight;
+	public String color;
+	public String boxShadow;
+	public String fontFamily;
+	public String display;
+	public String flexDirection;
+
+	public Css flexCol() {
+		return this;
+	}
+
+	public Css flexRow() {
+		return this;
+	}
+
+	public Css flexWrap$wrap() {
+		return this;
+	}
+
+	public Css pt(Integer x) {
+		return this;
+	}
+	
+	public Css px(Integer x) {
+		return this;
+	}
+
+	public Css pb(Integer x) {
+		return this;
+	}
+	
+	public Css m(Integer x) {
+		return this;
+	}
+
+	public Css p(Integer x) {
+		return this;
+	}
+
+	public Css minWidth(Integer x) {
+		return this;
+	}
+
+	public Css minWidth(String x) {
+		return this;
+	}
+
+	public Css maxWidth(String x) {
+		return this;
+	}
+
+	public Css maxWidth(Integer x) {
+		return this;
+	}
+
+	public Css minHeight(Integer x) {
+		return this;
+	}
+
+	public Css overflowY$scroll() {
+		return this;
+	}
+
+	public Css overflow$hidden() {
+		return this;
+	}
+
+	public Css overflowY$auto() {
+		return this;
+	}
+
+	public Css overflowX$scroll() {
+		return this;
+	}
+
+	public Css overflowX$auto() {
+		return this;
+	}
+
+	public Css minHeight(String x) {
+		return this;
+	}
+
+	public Css maxHeight(String x) {
+		return this;
+	}
+
+	public Css maxHeight(Integer x) {
+		return this;
+	}
+	
+	public Css zIndex(Integer x) {
+		return this;
+	}
+	
+	public Css position(String s) {
+		return this;
+	}
+	
+	public Css position$fixed() {
+		return this;
+	}
+
+	public Css position$absolute() {
+		return this;
+	}
+
+	public Css position$relative() {
+		return this;
+	}
+	
+	public Css opacity(double x) {
+		return this;
+	}
+	
+	public Css left(String x) {
+		return this;
+	}
+	
+	public Css left(Integer x) {
+		return this;
+	}
+
+	public Css right(Integer x) {
+		return this;
+	}
+
+	public Css top(Integer x) {
+		return this;
+	}
+
+	public Css bottom(String x) {
+		return this;
+	}
+	
+	public Css bottom(Integer x) {
+		return this;
+	}
+
+	public Css borderColor(String x) {
+		return this;
+	}
+
+	public Css bgcolor(String x) {
+		return this;
+	}
+
+	public Css backgroundColor(String x) {
+		return this;
+	}
+
+	public Css border(String x) {
+		return this;
+	}
+
+	public Css borderTop(String x) {
+		return this;
+	}
+
+	public Css borderBottom(String x) {
+		return this;
+	}
+
+	public Css borderBottomWidth(String x) {
+		return this;
+	}
+
+	public Css borderTopWidth(String x) {
+		return this;
+	}
+
+	public Css borderLeftWidth(String x) {
+		return this;
+	}
+
+	public Css borderRightWidth(String x) {
+		return this;
+	}
+
+	public Css borderBottomColor(String x) {
+		return this;
+	}
+
+	public Css borderLeft(String x) {
+		return this;
+	}
+
+	public Css borderRight(String x) {
+		return this;
+	}
+
+	public Css borderTop$none() {
+		return this;
+	}
+
+	public Css borderLeft$none() {
+		return this;
+	}
+
+	public Css borderRight$none() {
+		return this;
+	}
+
+	public Css borderTopLeftRadius(String x) {
+		return this;
+	}
+
+	public Css borderTopLeftRadius(Integer x) {
+		return this;
+	}
+
+	public Css borderBottomLeftRadius(String x) {
+		return this;
+	}
+
+	public Css borderBottomLeftRadius(Integer x) {
+		return this;
+	}
+	
+	public Css borderTopRightRadius(Integer x) {
+		return this;
+	}
+	
+	public Css borderTopRightRadius(String x) {
+		return this;
+	}
+
+	public Css borderBottomRightRadius(String x) {
+		return this;
+	}
+
+	public Css borderBottomRightRadius(Integer x) {
+		return this;
+	}
+	
+	public Css color(String x) {
+		return this;
+	}
+
+	public Css letterSpacing(String x) {
+		return this;
+	}
+	
+	public Css fontFamily(String x) {
+		return this;
+	}
+
+	public Css fontStyle(String x) {
+		return this;
+	}
+	
+	public Css fontWeight(String x) {
+		return this;
+	}
+	
+	public Css fontWeight(int x) {
+		return this;
+	}
+	
+	public Css fontWeight$bold() {
+		return this;
+	}
+
+	public Css lineHeight(double x) {
+		return this;
+	}
+
+	public Css lineHeight(String x) {
+		return this;
+	}
+
+	public Css padding(Integer x) {
+		return this;
+	}
+
+	public Css padding(String x) {
+		return this;
+	}
+
+	public Css fontSize(String x) {
+		return this;
+	}
+
+	public Css fontSize(Integer x) {
+		return this;
+	}
+	
+	public Css paddingTop(Integer x) {
+		return this;
+	}
+
+	public Css paddingTop(String x) {
+		return this;
+	}
+
+	public Css paddingBottom(Integer x) {
+		return this;
+	}
+
+	public Css paddingBottom(String x) {
+		return this;
+	}
+
+	public Css paddingLeft(Integer x) {
+		return this;
+	}
+
+	public Css paddingLeft(String x) {
+		return this;
+	}
+
+	public Css kv$(String key, Object value) {
+		return this;
+	}
+	
+	public Css paddingRight(Integer x) {
+		return this;
+	}
+
+	public Css paddingRight(String x) {
+		return this;
+	}
+	
+	public Css flexGrow(Integer x) {
+		return this;
+	}
+
+	public Css flexBasis$auto() {
+		return this;
+	}
+
+	public Css height(Integer x) {
+		return this;
+	}
+
+	public Css width(Integer x) {
+		return this;
+	}
+
+	public Css height(String x) {
+		return this;
+	}
+
+	public String width;
+	public String minWidth;
+	public String maxWidth;
+	public String height;
+	public String minHeight;
+	public String maxHeight;
+	
+	public Css width(String x) {
+		return this;
+	}
+
+	public Css margin(String x) {
+		return this;
+	}
+
+	public Css margin$auto() {
+		return this;
+	}
+
+	public Css marginTop$auto() {
+		return this;
+	}
+
+	public Css marginBottom$auto() {
+		return this;
+	}
+
+	public Css margin(Integer x) {
+		return this;
+	}
+
+	public Css marginTop(String x) {
+		return this;
+	}
+
+	public Css marginTop(Integer x) {
+		return this;
+	}
+	
+	public Css marginLeft(String x) {
+		return this;
+	}
+
+	public Css marginRight(Integer x) {
+		return this;
+	}
+	
+	public Css mr(Number x) {
+		return this;
+	}
+	
+	public Css my(Number x) {
+		return this;
+	}
+	
+	public Css marginRight(String x) {
+		return this;
+	}
+
+	public Css marginBottom(String x) {
+		return this;
+	}
+
+	public Css marginBottom(Integer x) {
+		return this;
+	}
+
+	public Css marginLeft(Integer x) {
+		return this;
+	}
+
+	public Css top(String x) {
+		return this;
+	}
+	
+	public Css transition(String x) {
+		return this;
+	}
+	
+	public Css transform(String x) {
+		return this;
+	}
+
+	public Css textTransform$none() {
+		return this;
+	}
+	
+	public Css cursor(String x) {
+		return this;
+	}
+
+	public Css cursor$pointer() {
+		return this;
+	}
+	
+	public Css cursor$auto() {
+		return this;
+	}
+
+	public Css borderRadius(Integer x) {
+		return this;
+	}
+	
+	public Css borderRadius(String x) {
+		return this;
+	}
+	
+	public Css boxShadow(Integer x) {
+		return this;
+	}
+
+	public Css boxShadow(String x) {
+		return this;
+	}
+
+	public Css borderWidth(String x) {
+		return this;
+	}
+
+	public Css borderStyle$solid() {
+		return this;
+	}
+
+	public Css borderRightStyle$solid() {
+		return this;
+	}
+
+	public Css borderLeftStyle$solid() {
+		return this;
+	}
+
+	public Css borderTopStyle$solid() {
+		return this;
+	}
+
+	public Css borderBottomStyle$solid() {
+		return this;
+	}
+
+	public Css borderBottomStyle$none() {
+		return this;
+	}
+
+	public Css borderTopStyle$none() {
+		return this;
+	}
+
+	public Css display(String value) {
+		return this;
+	}
+	
+	public Css display$flex() {
+		return this;
+	}
+
+	public Css display$contents() {
+		return this;
+	}
+
+	public Css flexDirection(String s) {
+		return this;
+	}
+
+	public Css flexDirection$row() {
+		return this;
+	}
+
+	public Css flexDirection$column() {
+		return this;
+	}
+	
+	public Css justifyContent$space__between() {
+		return this;
+	}
+
+	public Css justifyContent$space__around() {
+		return this;
+	}
+	
+	public Css justifyContent(String s) {
+		return this;
+	}
+	
+	public Css justifyContent$center() {
+		return this;
+	}
+
+	public Css justifyContent$start() {
+		return this;
+	}
+
+	public Css justifyContent$end() {
+		return this;
+	}
+
+	public Css justifyContent$flex__end() {
+		return this;
+	}
+
+	public Css justifyContent$flex__start() {
+		return this;
+	}
+
+	public Css alignItems(String s) {
+		return this;
+	}
+	
+	public Css alignItems$center() {
+		return alignItems("center");
+	}
+
+	public Css alignItems$left() {
+		return this;
+	}
+	
+	public Css textAlign$end() {
+		return this;
+	}
+	
+	public Css gap(String s) {
+		return this;
+	}
+
+	public Css textAlign$center() {
+		return this;
+	}
+
+	public Css textDecoration$underline() {
+		return this;
+	}
+	
+	public Css whiteSpace$break__spaces() {
+		return this;
+	}
+
+	public Css w20() {
+		return this;
+	}
+
+	public Css w40() {
+		return this;
+	}
+
+	public Css w45() {
+		return this;
+	}
+
+	public Css w50() {
+		return this;
+	}
+
+	public Css w55() {
+		return this;
+	}
+
+	public Css w60() {
+		return this;
+	}
+
+	public Css w70() {
+		return this;
+	}
+
+	public Css w100() {
+		return this;
+	}
+
+	public Css ht100() {
+		return this;
+	}
+
+	public Css verticalAlign$baseline() {
+		return this;
+	}
+	
+	public static Css json() {
+		return new Css();
+	}
+	
+	public static void main(String[] args) {
+		
+		JcClasse jc = JcClasse.build(st.class);
+		
+		Metodos metodos = ListMetodos.get(Css.class);
+		metodos.removeIf(i -> i.isStatic());
+		metodos.remove("kv$");
+		
+		metodos.each(i -> {
+			
+			JcMetodo m = jc.metodo(i.getName()).type(Css.class).static_().public_();
+			
+			if (i.getParameterCount() == 0) {
+				m.return_("new Sto()." + i.getName() + "()");
+			} else {
+				m.param(i.getName(), i.getParametros().get(0).getType()).return_("new Sto()." + i.getName() + "("+i.getName()+")");				
+			}
+			
+		});
+		
+		jc.addAnnotation(Support.class);
+		
+		jc.save();
+		
+	}
+
+	@Override
+	public String getFrom() {
+		return "@cruds/support/OurTypes";
+	}
+
+	@Override
+	public boolean importStatic() {
+		return true;
+	}
+
+	@Override
+	public boolean importAsType() {
+		return true;
+	}
+	
+}

@@ -1,0 +1,49 @@
+package br.wisevia.src.app.cruds.support;
+
+import br.cruds.support.Observers;
+import br.wisevia.WiseviaTranspilar;
+import gm.utils.anotacoes.GravarComExtensaoTs;
+import gm.utils.anotacoes.IgnorarDaquiPraBaixo;
+import gm.utils.lambda.F0;
+import js.Js;
+import js.support.JSON;
+
+@GravarComExtensaoTs
+public class AuthController extends Js {
+	
+	public static final Observers observers = new Observers();
+	
+	public static void set(LoginObj o) {
+		Js.window.localStorage.setItem("login", JSON.stringify(o));
+		observers.notify();
+	}
+	
+	public static void clear() {
+		Js.window.localStorage.removeItem("login");
+		observers.notify();
+	}
+	
+	public static LoginObj get() {
+		String s = Js.window.localStorage.getItem("login");
+		if (not(s)) {
+			return null;
+		} else {
+			try {
+				return JSON.parse(s, LoginObj.class);
+			} catch (Exception e) {
+				clear();
+				return null;
+			}
+		}
+	}
+	
+	public static boolean isLogado() {
+		return get() != null;
+	}
+
+	@IgnorarDaquiPraBaixo
+	public static void main(String[] args) {
+		WiseviaTranspilar.exec(AuthController.class, true);
+	}
+	
+}

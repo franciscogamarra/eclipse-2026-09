@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;src.react.observers.Observers&apos; to &apos;HtmlObservers&apos;&#x0D;&#x0A;- Original project: &apos;react&apos;&#x0D;&#x0A;- Original element: &apos;src.react.observers.Observers&apos;&#x0D;&#x0A;- Renamed element: &apos;src.react.observers.HtmlObservers&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Observers&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;src.react.observers{Observers.java[Observers" matchStrategy="1" name="HtmlObservers" qualified="false" references="true" similarDeclarations="false" stamp="1792121214237" textual="false" version="1.0"/>
+</session>

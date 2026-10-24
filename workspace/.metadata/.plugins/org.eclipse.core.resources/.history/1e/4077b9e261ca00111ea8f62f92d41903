@@ -1,0 +1,64 @@
+package br.wisevia.src.components;
+
+import br.wisevia.WiseviaTranspilar;
+import br.wisevia.srcx.components.LogoX;
+import br.wisevia.srcx.components.LogoX.X_style;
+import exec.ts.infra.FC;
+import exec.ts.infra.Req;
+import gm.languages.ts.javaToTs.style.Css;
+import gm.utils.anotacoes.IgnorarDaquiPraBaixo;
+import html.div;
+import html.path;
+import html.small;
+import html.span;
+import html.strong;
+import html.svg;
+import react.support.ReactNode;
+
+public class Logo extends FC<Logo> {
+
+	private Req<Css> style = req();
+	private Req<Integer> width = req(248);
+	
+	@Override
+	protected ReactNode render() {
+		
+		Css css = not(style.get()) ? Css.json() : join$(style.get());
+		css.display = "flex";
+		css.alignItems = "center";
+		css.gap = "13px";
+		
+		return (
+			div.r().style(Css.json().width(width.get()+"px").display$flex().alignItems$center().gap("13px")).ok(
+				div.r().ok(
+					svg.r().viewBox("0 0 60 48"+(width.get()-200)).aria_hidden(true).ok(
+						path.r().d("M2 4h12l20 36-8 8L2 4Z").fill("#fff").ok(),
+						path.r().d("M17 12h12l16 28-8 8-20-36Z").fill("#fff").ok(),
+						path.r().d("M33 12h12l15 27-8 9-19-36Z").fill("#00CE7C").ok()
+					)						
+				),
+				div.r().style(Css.json().display$flex().flexDirection$column().justifyContent$space__between()).ok(
+					strong.r().style(Css.json().display$block().fontSize("1.65rem").letterSpacing("-.04em")).ok(
+						okString("WISE"),
+						span.r().ok(okString("HUB"))
+					),
+					span.r().ok(
+						okString("ERP da videotelemetria")
+					)
+				)
+			)
+		);
+	}
+	
+	@IgnorarDaquiPraBaixo
+	
+	public static void main(String[] args) {
+		WiseviaTranspilar.exec(Logo.class, false);
+//		CriarSrcx.exec();
+	}
+	
+	public static X_style r() {
+		return LogoX.rs();
+	}
+
+}

@@ -1,0 +1,83 @@
+package br.wisevia.src.app.cruds.support;
+
+import br.cruds.support.Api;
+import br.cruds.support.Observers;
+import br.wisevia.WiseviaTranspilar;
+import gm.utils.anotacoes.GravarComExtensaoTs;
+import gm.utils.anotacoes.IgnorarDaquiPraBaixo;
+import js.Js;
+import js.support.JSON;
+
+@GravarComExtensaoTs
+public class AuthController extends Js {
+	
+	public static final Observers observers = new Observers();
+	
+	private static LoginObj instance;
+	
+	public static void set(LoginObj o) {
+		if (not(o)) {
+			clear();
+		} else {
+			Js.window.localStorage.setItem("login", JSON.stringify(o));
+			instance = o;
+			observers.notify();
+		}
+	}
+	
+	public static void clear() {
+		String token = getToken();
+		Js.window.localStorage.removeItem("login");
+		instance = null;
+		observers.notify();
+		if (!not(token)) {
+			Api.post("/logout", LoginObj.json().token(token));
+		}
+	}
+	
+	public static LoginObj get() {
+		
+		if (not(instance)) {
+
+			String s = or(Js.window.localStorage.getItem("login"), "");
+			if (not(s)) {
+				return null;
+			} else {
+				try {
+					LoginObj o = JSON.parse(s, LoginObj.class);
+					if (not(o) || not(o.token)) {
+						clear();
+						return null;
+					}
+					instance = o;
+					return o;
+				} catch (Exception e) {
+					clear();
+					return null;
+				}
+			}
+			
+		} else if (not(instance.token)) {
+			clear();
+			return null;
+		} else {
+			return instance;
+		}
+		
+	}
+	
+	public static boolean isLogado() {
+		return get() != null;
+	}
+
+	public static String getToken() {
+		LoginObj o = get();
+		return o == null ? "" : o.token;
+	}
+	
+	@IgnorarDaquiPraBaixo
+	public static void main(String[] args) {
+		WiseviaTranspilar.exec(AuthController.class, true);
+	}
+	
+}

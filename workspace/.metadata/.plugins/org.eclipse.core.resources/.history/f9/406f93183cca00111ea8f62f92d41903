@@ -1,0 +1,59 @@
+package br.wisevia.srcx.components;
+
+import br.wisevia.src.components.Logo;
+import exec.srcx.CriarSrcx;
+import exec.srcx.Srcx;
+import exec.ts.infra.Req;
+import gm.languages.ts.javaToTs.style.Sto;
+import gm.utils.reflection.Atributo;
+import gm.utils.reflection.Atributos;
+import jakarta.validation.constraints.NotNull;
+
+public class LogoX extends Srcx<LogoX, Logo> {
+
+	public static class X_style {
+
+		private Logo mainComponent;
+
+		private X_style(Logo mainComponent) {
+			this.mainComponent = mainComponent;
+		}
+
+		public LogoX style(@NotNull Sto style) {
+			Req<Sto> o_style = a_style.get(mainComponent);
+			o_style.put(style);
+			return new LogoX(mainComponent);
+		}
+	}
+
+	private static final Atributo a_style;
+
+	public static X_style rs() {
+		return new X_style(getInMemory(() -> new Logo()));
+	}
+
+	private LogoX(Logo mainComponent) {
+		super(mainComponent);
+	}
+
+	static {
+		Atributos as = Atributos.get(Logo.class).removeStatics();
+		a_style = as.get("style");
+	}
+
+	public LogoX id(String id) {
+		return this;
+	}
+
+	public LogoX key(Object key) {
+		return this;
+	}
+
+	public static void main(String... args) {
+		CriarSrcx.exec(Logo.class);
+	}
+
+	public Logo getComponent() {
+		return super.getMainComponent();
+	}
+}

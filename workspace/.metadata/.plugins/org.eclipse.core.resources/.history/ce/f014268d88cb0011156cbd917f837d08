@@ -1,0 +1,500 @@
+package br.wisevia.src.deslogado;
+
+import br.cruds.models.LoginInput;
+import br.cruds.support.Api;
+import br.cruds.support.Campo;
+import br.cruds.support.ModelSupport;
+import br.wisevia.WiseviaTranspilar;
+import br.wisevia.src.app.cruds.support.AuthController;
+import br.wisevia.src.app.cruds.support.LoginObj;
+import br.wisevia.src.app.cruds.support.ShowMessage;
+import br.wisevia.src.components.Logo;
+import br.wisevia.src.components.icons.Icone;
+import exec.ts.infra.FC;
+import exec.ts.infra.StateBoolean;
+import exec.ts.infra.StateProp;
+import exec.ts.infra.StateString;
+import gm.languages.ts.javaToTs.style.Css;
+import gm.utils.anotacoes.IgnorarDaquiPraBaixo;
+import gm.utils.lambda.P0;
+import html.a;
+import html.br_tag;
+import html.button;
+import html.circle;
+import html.defs;
+import html.div;
+import html.h1;
+import html.h2;
+import html.input;
+import html.label;
+import html.linearGradient;
+import html.p;
+import html.path;
+import html.section;
+import html.span;
+import html.stop;
+import html.svg;
+import html.tag_main;
+import html.types.inputType.InputTypeValues;
+import js.Js;
+import js.array.Array;
+import js.html.ListenerEvent;
+import js.html.support.MouseEvent;
+import libs.react.Fragment;
+import react.support.ReactNode;
+import src.react.Frag;
+
+//@ImportCss("./LoginPage.scss")
+public class LoginPage extends FC<LoginPage> {
+	
+	private StateBoolean loading = stateBoolean(false);
+	private StateString cpf = stateString("");
+	private StateString cpfInvalidMessage = stateString("");
+	private StateString senha = stateString("");
+	private StateString novaSenha = stateString("");
+	private StateString novaSenhaConfirmacao = stateString("");
+	private StateString email = stateString("");
+	private StateString emailInvalidMessage = stateString("");
+	private StateProp<LoginInput> model = state((LoginInput) ModelSupport.newModel("LoginInput"));
+	private StateString etapa = stateString("login");
+	private StateBoolean primeiroSlide = stateBoolean(true);
+	
+	@Override
+	protected ReactNode render() {
+		
+		useEffectUnmount(() -> {
+			
+			Campo campoCpf = model.get().campoCpf;
+			Campo campoSenha = model.get().campoSenha;
+			Campo campoNovaSenha = model.get().campoNovaSenha;
+			Campo campoEmail = model.get().campoEmail;
+			
+			P0 observerCpf = campoCpf.value.observers.add(() ->
+				cpf.set(campoCpf.value.getString())
+			);
+			
+			P0 observerCpfInvalid = campoCpf.invalidMessage.observers.add(() -> {
+				if (campoCpf.invalidMessage.isEmpty()) {
+					cpfInvalidMessage.set("");
+				} else {
+					cpfInvalidMessage.set(campoCpf.valid.cause());
+				}
+			});
+			
+			P0 observerSenha = campoSenha.value.observers.add(() ->
+				senha.set(campoSenha.value.getString())
+			);
+			
+			P0 observerNovaSenha = campoNovaSenha.value.observers.add(() ->
+				novaSenha.set(campoNovaSenha.value.getString())
+			);
+			
+			P0 observerEmail = campoEmail.value.observers.add(() ->
+				email.set(campoEmail.value.getString())
+			);
+			
+			P0 observerEmailInvalid = campoEmail.invalidMessage.observers.add(() -> {
+				if (campoEmail.invalidMessage.isEmpty()) {
+					emailInvalidMessage.set("");
+				} else {
+					emailInvalidMessage.set(campoEmail.valid.cause());
+				}
+			});
+			
+			return () -> {
+				campoCpf.value.observers.remove(observerCpf);
+				campoCpf.invalidMessage.observers.remove(observerCpfInvalid);
+				campoSenha.value.observers.remove(observerSenha);
+				campoNovaSenha.value.observers.remove(observerNovaSenha);
+				campoEmail.value.observers.remove(observerEmail);
+				campoEmail.invalidMessage.observers.remove(observerEmailInvalid);
+			};
+			
+		}, new Array<>(model));
+		
+		return (
+			tag_main.r().className("page").ok(
+				metadeEsquerda(),
+				metadeDireita()
+			)
+		);
+		
+	}
+	
+	private ReactNode metadeEsquerdaMiolo() {
+		
+		Js.setTimeout(() -> primeiroSlide.toggle(), 1000);
+		
+		if (primeiroSlide.get()) {
+			return (
+				Frag.r().ok(
+					span.r().className("eyebrow").ok(
+						"RASTREAMENTO DE ATIVOS"
+					),
+					h1.r().ok(
+						okString("Gestão conectada."),
+						br_tag.r().ok(),
+						span.r().className("accent").ok(
+							"Decisões inteligentes."
+						)
+					),
+					p.r().ok(
+						"Acompanhe localização, uso e status de cada ativo em tempo real, com histórico completo e alertas automáticos em um único painel."
+					)
+				)
+			);
+		}
+
+		return (
+			Frag.r().ok(
+				span.r().className("eyebrow").ok(
+					"RASTREAMENTO DE ATIVOS"
+				),
+				h1.r().ok(
+					okString("Gestão conectada."),
+					br_tag.r().ok(),
+					span.r().className("accent").ok(
+						"Decisões inteligentes."
+					)
+				),
+				p.r().ok(
+					"Acompanhe localização, uso e status de cada ativo em tempo real, com histórico completo e alertas automáticos em um único painel."
+				)
+			)
+		);
+		
+	}
+	
+	private ReactNode metadeEsquerda() {
+//        transform: `translateX(-${currentIndex * 100}%)`,
+//        transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
+//		<div className={"brand-copy"}>
+		return (
+			section.r().className("brand-panel").ok(
+				Logo.r().ok(),
+				div.r().className("brand-copy").style(Css.json().transition("transform 0.5s ease-in-out")).ok(
+					metadeEsquerdaMiolo()
+				),
+				routeArt()
+			)
+		);
+	}
+	
+	private ReactNode metadeDireita() {
+		return (
+			section.r().className("login-panel").ok(
+				div.r().className("login-card").ok(
+					mioloDireita(),
+					div.r().className("security-note").ok(
+						Icone.r().name("shield-check").large().ok(),
+						div.r().style(Css.json().display$flex().flexDirection$column().justifyContent$space__between().textAlign$center()).ok(
+							span.r().ok("Sua conexão é protegida por criptografia."),
+							span.r().ok("© 2026 Wisevia - v1.0.0")
+						)
+					)
+				)
+			)
+		);
+	}
+	
+	private ReactNode mioloDireita() {
+		if (etapa.eq("login")) {
+			return login();
+		} else if (etapa.eq("trocar-senha")) {
+			return trocarSenha();
+		} else if (etapa.eq("esqueci-senha")) {
+			return esqueciSenha();
+		} else {
+			return login();
+		}
+	}
+	
+	private ReactNode inputCpf() {
+		return (
+			Fragment.r().ok(
+				div.r().className("label-row").ok(
+					label.r().ok("CPF"),
+					span.r().className("error").ok(cpfInvalidMessage.get())
+				),
+				div.r().className("input-wrap").ok(
+					Icone.r().name("user").ok(),
+					input.r()
+						.type(InputTypeValues.text)
+						.placeholder("Digite seu CPF")
+						.autoComplete("username")
+						.value(cpf.get())
+						.onChange((ListenerEvent e) -> model.get().campoCpf.setValue(e.target.value))
+					.ok()
+				)
+			)
+		);
+	}
+	
+	private ReactNode inputEmail() {
+		return (
+			Fragment.r().ok(
+				div.r().className("label-row").ok(
+					label.r().ok("E-mail"),
+					span.r().className("error").ok(emailInvalidMessage.get())
+				),
+				div.r().className("input-wrap").ok(
+					Icone.r().name("mail").ok(),
+					input.r()
+						.type(InputTypeValues.text)
+						.placeholder("Digite seu E-mail")
+						.autoComplete("email")
+						.value(email.get())
+						.onChange((ListenerEvent e) -> model.get().campoEmail.setValue(e.target.value))
+					.ok()
+				)
+			)
+		);
+	}
+	
+	private ReactNode esqueciSenha() {
+		return (
+			Fragment.r().ok(
+				div.r().className("card-heading").ok(
+					span.r().className("section-tag").ok("ACESSO"),
+					h2.r().ok("Esqueci minha senha"),
+					p.r().ok("Enviaremos ao seu e-mail uma nova senha.")
+				),
+				inputCpf(),
+				inputEmail(),
+				buttons(
+					Frag.r().ok(
+						button.r().className("submit").type("button").disabled(loading.get()).onClick(() -> {
+							etapa.set("login");
+						}).ok(
+							Icone.r().name("voltar").ok(),
+							span.r().ok("Voltar")
+						),
+						button.r().className("submit").type("button").disabled(loading.get()).onClick(() -> {
+							
+							if (model.get().campoCpf.isEmpty()) {
+								ShowMessage.error("CPF deve ser informado");
+								return;
+							}
+							
+							if (!model.get().campoCpf.valid.is()) {
+								ShowMessage.error("Corrija o campo CPF");
+								return;
+							}
+							
+							if (model.get().campoEmail.isEmpty()) {
+								ShowMessage.error("E-mail deve ser informado");
+								return;
+							}
+							
+							if (!model.get().campoEmail.valid.is()) {
+								ShowMessage.error("Corrija o campo E-mail");
+								return;
+							}
+							
+							loading.set(true);
+							Api.post("unauthenticated/login/recuperar-senha", model.get().montarJson(), String.class)
+								.then(res -> {
+									ShowMessage.success("Foi enviado um e-mail contendo a uma nova senha para o e-mail solicitado.");
+									etapa.set("login");
+									model.get().campoSenha.setValue("");
+									return res;
+								})
+								.catch_(error -> {
+									ShowMessage.error(error.getMessage());
+								})
+								.finally_(() -> loading.set(false));
+							
+						}).ok(
+							span.r().ok(
+								loading.get() ? "Enviando..." : "Enviar"
+							),
+							iif(!loading.get(), Icone.r().name("avancar").ok())
+						)
+					)
+				)
+			)
+		);
+	}
+	
+	private ReactNode login() {
+		return (
+			Fragment.r().ok(
+				div.r().className("card-heading").ok(
+					span.r().className("section-tag").ok("ACESSO"),
+					h2.r().ok("Bem-vindo"),
+					p.r().ok("Informe suas credenciais para continuar.")
+				),
+				inputCpf(),
+				div.r().className("label-row").ok(
+					label.r().ok("Senha"),
+					a.r().onClick((MouseEvent e) -> {
+						e.preventDefault();
+						etapa.set("esqueci-senha");
+					}).ok("Esqueceu sua senha?")
+				),
+				InputPass.r()
+					.value(senha.get())
+					.setValue((String value) -> model.get().campoSenha.setValue(value))
+					.autoComplete("off")
+				.ok(),
+				buttons(
+					button.r().className("submit").type("button").disabled(loading.get()).onClick(() -> {
+						
+						if (!model.get().campoCpf.valid.is()) {
+							ShowMessage.error("Corrija o campo CPF");
+							return;
+						}
+						
+						if (!model.get().campoSenha.valid.is()) {
+							ShowMessage.error("Corrija o campo senha");
+							return;
+						}
+						
+						loading.set(true);
+						Api.post("unauthenticated/login", model.get().montarJson(), LoginOutput.class)
+							.then(res -> {
+								if (assumeNotNull(res).solicitarTrocaDeSenha) {
+									etapa.set("trocar-senha");
+								} else {
+									sucessoLogin(res);
+								}
+								return res;
+							})
+							.catch_(error -> {
+								ShowMessage.error(error.getMessage());
+							})
+							.finally_(() -> loading.set(false));
+						
+					}).ok(
+						span.r().ok(
+							loading.get() ? "Entrando..." : "Entrar"
+						),
+						iif(!loading.get(), Icone.r().name("avancar").ok())
+					)
+				)
+			)
+		);
+	}
+	
+	private ReactNode trocarSenha() {
+		return (
+			Fragment.r().ok(
+				div.r().className("card-heading").ok(
+					span.r().className("section-tag").ok("ACESSO"),
+					h2.r().ok("Troca de Senha"),
+					p.r().ok("Informe sua nova senha para continuar.")
+				),
+				div.r().className("label-row").ok(
+					label.r().ok("Nova Senha")
+				),
+				InputPass.r()
+					.value(novaSenha.get())
+					.setValue((String value) -> model.get().campoNovaSenha.setValue(value))
+				.ok(),
+				div.r().className("label-row").ok(
+					label.r().ok("Repita a nova Senha")
+				),
+				InputPass.r()
+					.value(novaSenhaConfirmacao.get())
+					.setValue((String value) -> novaSenhaConfirmacao.set(value))
+				.ok(),
+				buttons(
+					button.r().className("submit").type("button").disabled(loading.get()).onClick(() -> {
+						
+						if (novaSenha.isEmpty()) {
+							ShowMessage.error("A nova senha deve ser informada");
+							return;
+						}
+						
+						if (novaSenhaConfirmacao.ne(novaSenha.get())) {
+							ShowMessage.error("As senhas informadas não conferem");
+							return;
+						}
+						
+						loading.set(true);
+						Api.post("unauthenticated/login/trocar-senha", model.get().montarJson(), LoginOutput.class)
+							.then(res -> {
+								sucessoLogin(res);
+								return res;
+							})
+							.catch_(error -> {
+								ShowMessage.error(error.getMessage());
+							})
+							.finally_(() -> loading.set(false));
+						
+					}).ok(
+						span.r().ok(
+							loading.get() ? "Confirmando..." : "Confirmar"
+						),
+						iif(!loading.get(), Icone.r().name("avancar").ok())
+					)
+				)
+			)
+		);
+	}
+	
+	private void sucessoLogin(LoginOutput out) {
+		if (!not(out)) {
+			AuthController.set(LoginObj.json().cpf(assumeNotNull(cpf.get())).token(assumeNotNull(out.token)).nome(assumeNotNull(out.nome)));
+		}
+	}
+	
+	private ReactNode routeArt() {
+		return (
+			svg.r()
+				.className("route-art0")
+				.viewBox("0 0 560 220")
+				.width("100%")
+				.height("220")
+				.preserveAspectRatio("xMidYMid meet")
+				.aria_hidden("true")
+			.ok(
+				defs.r().ok(
+					linearGradient.r().id("routeGradient").x1("0").y1("0").x2("1").y2("0").ok(
+						stop.r().offset("0%").stopColor("#3fba83").stopOpacity("0").ok(),
+						stop.r().offset("18%").stopColor("#3fba83").stopOpacity(".55").ok(),
+						stop.r().offset("100%").stopColor("#5ecf9a").stopOpacity(".55").ok()
+					)
+				),
+				path.r()
+					.className("route-path")
+					.d("M40,168 C 100,120 130,160 190,132 S 300,72 340,96 S 430,150 500,60")
+					.pathLength("900")
+				.ok(),
+				circle.r().className("route-node").cx("40").cy("168").r£("5").ok(),
+				circle.r().className("route-node").cx("190").cy("132").r£("5").ok(),
+				circle.r().className("route-node").cx("340").cy("96").r£("5").ok(),
+				circle.r().className("route-ping").cx("500").cy("60").r£("7").ok(),
+				circle.r().className("route-node is-live").cx("500").cy("60").r£("6").ok()
+			)
+		);
+		
+	}
+	
+	private ReactNode buttons(ReactNode body) {
+		return (
+			Fragment.r().ok(
+				div.r().style(Css.json().marginTop("20px")).ok(),
+				divider(),
+				div.r().style(Css.json().flexRow()).ok(
+					body
+				),
+				divider()
+			)
+		);
+	}
+	
+	private ReactNode divider() {
+		return div.r().className("divider").ok();
+	}
+	
+	@IgnorarDaquiPraBaixo
+	public static void main(String[] args) {
+		WiseviaTranspilar.exec(LoginPage.class, false);
+	}
+	
+	public static LoginPage r() {
+		return new LoginPage();
+	}
+	
+}

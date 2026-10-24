@@ -1,0 +1,67 @@
+package br.wisevia.src.components;
+
+import br.wisevia.WiseviaTranspilar;
+import br.wisevia.srcx.components.LogoX;
+import exec.srcx.CriarSrcx;
+import exec.ts.infra.FC;
+import exec.ts.infra.PropInt;
+import gm.languages.ts.javaToTs.style.Css;
+import gm.utils.anotacoes.IgnorarDaquiPraBaixo;
+import html.div;
+import html.path;
+import html.span;
+import html.strong;
+import html.svg;
+import js.outros.JsMath;
+import react.support.ReactNode;
+
+public class Logo extends FC<Logo> {
+
+	private PropInt width = propInt(248);
+	
+	@Override
+	protected ReactNode render() {
+		
+		int hbase = width.get()-200;
+		int wbase = JsMath.floor(hbase * 1.25);
+		
+//		img.r().src("/wisevia-logo.svg").className("mark-logo").alt("Wisevia").ok()
+		
+		return (
+			div.r().style(Css.json().width(width.get()+"px").display$flex().alignItems$center().gap("13px")).ok(
+				div.r().style(Css.json().width(wbase+"px").height(hbase+"px")).ok(
+					svg.r().viewBox("0 0 "+wbase+" "+hbase).aria_hidden(true).ok(
+						path.r().d("M2 4h12l20 36-8 8L2 4Z").fill("#fff").ok(),
+						path.r().d("M17 12h12l16 28-8 8-20-36Z").fill("#fff").ok(),
+						path.r().d("M33 12h12l15 27-8 9-19-36Z").fill("#00CE7C").ok()
+					)						
+				),
+				div.r().style(Css.json().display$flex().flexDirection$column().justifyContent$space__between()).ok(
+					strong.r().style(Css.json().display$block().fontSize("1.65rem").letterSpacing("-.04em")).ok(
+						span.r().ok("WISE"),
+						span.r().style(Css.json().color("#00ce7c")).ok("HUB")
+					),
+					span.r().style(Css.json().display$block().color("#9ec2ba").fontSize(".72rem").textTransform$uppercase().letterSpacing(".12em").marginTop("4px"))
+					.ok(
+							
+//						    margin-top: 4px;
+							
+						"ERP da videotelemetria"
+					)
+				)
+			)
+		);
+	}
+	
+	@IgnorarDaquiPraBaixo
+	
+	public static void main(String[] args) {
+		WiseviaTranspilar.exec(Logo.class, false);
+		CriarSrcx.exec();
+	}
+	
+	public static LogoX r() {
+		return LogoX.rs();
+	}
+
+}

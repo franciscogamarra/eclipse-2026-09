@@ -1,0 +1,160 @@
+package br.wisevia.src;
+
+import br.cruds.support.Api;
+import br.cruds.support.ApiRequestParams;
+import br.wisevia.WiseviaTranspilar;
+import br.wisevia.src.app.cruds.support.AuthController;
+import br.wisevia.src.app.cruds.support.ErroDeRequisicao;
+import br.wisevia.src.components.AlertComponent;
+import br.wisevia.src.deslogado.DeslogadoPage;
+import br.wisevia.src.deslogado.LoginOutput;
+import br.wisevia.src.logado.LogadoPage;
+import exec.ts.infra.FC;
+import gm.utils.anotacoes.IgnorarDaquiPraBaixo;
+import gm.utils.lambda.F1;
+import js.Js;
+import js.promise.Promise;
+import js.support.JSON;
+import libs.axios.AxiosCreateParams;
+import libs.axios.AxiosError;
+import libs.axios.AxiosHeaders;
+import libs.axios.AxiosInstance;
+import libs.axios.AxiosRequestConfig;
+import libs.axios.AxiosResponse;
+import libs.axios.axios;
+import react.support.ReactNode;
+import src.react.Frag;
+
+//@ImportCss("./App.css")
+public class App extends FC<App> {
+	
+	private ReactNode body() {
+		if (AuthController.isLogado()) {
+			return LogadoPage.r().ok();
+		} else {
+			return DeslogadoPage.r().ok();
+		}
+	}
+	
+	@Override
+	protected ReactNode render() {
+		
+		useEffect(() -> {
+			configAuth();
+			configRequests();
+		});
+		
+		return (
+			Frag.r().ok(
+				AlertComponent.r().ok(),
+				body()
+			)
+			//			BrowserRouter.r().ok(
+			//				ColorModeContextProvider.r().value(tema.colorMode).ok(
+			//					ThemeProvider.r().theme(tema.theme).ok(
+			//						CssBaseline.r().ok(),
+			//						body(),
+			//						LoadingFrame.r().ok(),
+			//						Alertas.r().ok(),
+			//						Modais.r().ok()
+			//					)
+			//				)
+			//			)
+		);
+		
+	}
+	
+	private void configAuth() {
+		
+		AuthController.getUserId = () -> {
+			String item = or(Js.window.localStorage.getItem("login"), "");
+			if (not(item)) {
+				return "";
+			}
+			LoginOutput loginOutput = JSON.parse(item, LoginOutput.class);
+			if (not(loginOutput)) {
+				return "";
+			}
+			return or(loginOutput.nome, "");
+		};
+
+	}
+	
+	private void configRequests() {
+		
+		AxiosInstance axiosInstance = axios.create(AxiosCreateParams.json().baseURL("http://localhost:8080").timeout(30000));
+		
+		axiosInstance.interceptors.response.use(
+			(AxiosResponse response) -> {
+				return response;
+			},
+			(AxiosError error) -> {
+				if (not(error.response)) {
+					if (error.code == "ERR_NETWORK") {
+						throw new ErroDeRequisicao("Não foi possível acessar o servidor", 403);
+					} else {
+						throw new ErroDeRequisicao("Ocorreu um erro ao tentar executar sua solitação", 409);
+					}
+				} else if (typeof(error.response.data) == "string") {
+					throw new ErroDeRequisicao(error.response.data+"", error.response.status);
+				} else if (error.response.status == 404) {
+					throw new ErroDeRequisicao("Recurso solicitado não encontrado em nossos servidores", error.response.status);
+				} else {
+					throw new ErroDeRequisicao("Ocorreu um erro ao tentar executar sua solitação", error.response.status);
+				}
+				// if (error.response?.status === 401) {
+				//  tratar sessão expirada
+				// }
+				//					return Promise.reject(error);
+			}
+		);
+		
+		F1<ApiRequestParams, Promise<?>> newRequestOriginal = Api.newRequest;
+		Api.newRequest = (ApiRequestParams params) -> {
+			
+			AxiosHeaders headers = new AxiosHeaders();
+			AxiosRequestConfig config = AxiosRequestConfig.json().headers(headers);
+			
+			String item = or(Js.window.localStorage.getItem("login"), "");
+			if (!not(item)) {
+				LoginOutput loginOutput = JSON.parse(item, LoginOutput.class);
+				if (!not(loginOutput)) {
+					config.withCredentials = true;
+					headers.setAuthorization("Bearer " + loginOutput.token);
+				}
+			}
+			
+			Promise<AxiosResponse> promise;
+			
+			if (params.method == "GET") {
+				promise = axiosInstance.get(params.path, config);
+			} else if (params.method == "POST") {
+				promise = axiosInstance.post(params.path, params.requestBody, config);
+			} else if (params.method == "PUT") {
+				promise = axiosInstance.put(params.path, params.requestBody, config);
+			} else if (params.method == "PATCH") {
+				promise = axiosInstance.patch(params.path, params.requestBody, config);
+			} else if (params.method == "DELETE") {
+				promise = axiosInstance.delete(params.path, config);
+			} else {
+				return newRequestOriginal.call(params);
+			}
+			
+			return promise;
+			
+		};
+		
+	}
+	
+	@IgnorarDaquiPraBaixo
+	public static void main(String[] args) {
+		WiseviaTranspilar.exec(App.class, true);
+	}
+	
+}
+
+/*
+paciente: {}
+tratamento: {}
+medicamentos: {}
+*/

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="gm.languages.ts.javaToTs.JavaToTs"/>
+    <fullyQualifiedTypeName name="gm.utils.anotacoes.GravarComExtensaoTs"/>
+    <fullyQualifiedTypeName name="gm.utils.files.GFile"/>
+    <fullyQualifiedTypeName name="src.commom.utils.string.StringAfterFirst"/>
+    <fullyQualifiedTypeName name="libs.axios.AxiosHeaders"/>
+    <fullyQualifiedTypeName name="gm.utils.comum.JSon"/>
+    <fullyQualifiedTypeName name="gm.languages.ts.javaToTs.annotacoes.FromMethod"/>
+    <fullyQualifiedTypeName name="br.libs.zustand.create"/>
+    <fullyQualifiedTypeName name="gm.utils.anotacoes.IgnorarDaquiPraBaixo"/>
+    <fullyQualifiedTypeName name="js.support.JSON"/>
+    <fullyQualifiedTypeName name="src.react.observers.Observers"/>
+    <fullyQualifiedTypeName name="br.cruds.support.Observers"/>
+    <fullyQualifiedTypeName name="br.cruds.support.Objects"/>
+    <fullyQualifiedTypeName name="gm.languages.ts.javaToTs.GerarJson"/>
+    <fullyQualifiedTypeName name="br.wisevia.WiseviaTranspilar"/>
+    <fullyQualifiedTypeName name="html.div"/>
+    <fullyQualifiedTypeName name="gm.languages.ts.javaToTs.style.Sto"/>
+    <fullyQualifiedTypeName name="br.wisevia.src.app.cruds.support.AuthController"/>
+    <fullyQualifiedTypeName name="br.cruds.support.Api"/>
+    <fullyQualifiedTypeName name="br.wisevia.src.app.cruds.support.LoginObj"/>
+    <fullyQualifiedTypeName name="jakarta.ws.rs.core.Response"/>
+    <fullyQualifiedTypeName name="exec.ts.infra.FC"/>
+    <fullyQualifiedTypeName name="html.svg"/>
+    <fullyQualifiedTypeName name="gm.languages.ts.javaToTs.style.Css"/>
+    <fullyQualifiedTypeName name="js.annotations.NaoConverter"/>
+    <fullyQualifiedTypeName name="br.wisevia.src.components.carousel.Carousel"/>
+    <fullyQualifiedTypeName name="src.react.Frag"/>
+    <fullyQualifiedTypeName name="js.Js"/>
+    <fullyQualifiedTypeName name="exec.ts.infra.StateInt"/>
+    <fullyQualifiedTypeName name="js.support.console"/>
+</qualifiedTypeNameHistroy>
